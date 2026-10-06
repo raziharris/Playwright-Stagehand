@@ -83,7 +83,7 @@ app.post('/api/chat', (req, res) => {
   return res.json({ reply: 'I can explore a URL, generate tests, run a test or module, show failed tests, and sync project tests. For semantic AI analysis, add OPENAI_API_KEY to .env.' });
 });
 
-const dist = path.join(root, 'dist');
+const dist = process.env.QA_ORBIT_DIST_DIR || path.join(root, 'dist');
 if (fs.existsSync(dist)) {
   app.use(express.static(dist));
   app.get('/{*path}', (_req, res) => res.sendFile(path.join(dist, 'index.html')));

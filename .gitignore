@@ -10,3 +10,5 @@ playwright/.cache/
 .data/
 dist/
 browser-data/
+release/
+build/

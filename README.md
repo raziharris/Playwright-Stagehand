@@ -2,6 +2,18 @@
 
 A local QA automation workspace built with React, TypeScript, Node.js, Playwright, and Stagehand. It discovers pages on a website, turns observed page structure into Playwright specs, and lets you run and inspect those specs in a visual workspace.
 
+## Windows desktop app
+
+The Electron edition uses the same project workspace and writes generated tests into its `tests/` folder. Build a Windows installer with:
+
+```powershell
+npm.cmd run desktop:installer
+```
+
+The installer is created in `release/` and adds a **QA Orbit** desktop shortcut with the custom icon in `assets/`. For local Electron development, run `npm.cmd run desktop:dev`.
+
+The installed app looks for this project folder on the Desktop, or you can set `QA_ORBIT_PROJECT_ROOT` to another project path. It uses the project's installed Playwright package and the browser binaries installed by `npx.cmd playwright install`. If you move the project or install the app on another computer, install project dependencies and Playwright browsers in that project first.
+
 ## Start
 
 Requires Node.js 22.18 or newer.

@@ -23,7 +23,7 @@ export async function runTests(scope: Scope) {
   try {
     if (fs.existsSync(resultPath)) fs.unlinkSync(resultPath);
     await new Promise<void>((resolve, reject) => {
-      child = spawn(process.execPath, args, { cwd: root, windowsHide: true, env: { ...process.env, FORCE_COLOR: '0' } });
+      child = spawn(process.execPath, args, { cwd: root, windowsHide: true, env: { ...process.env, FORCE_COLOR: '0', ...(process.versions.electron ? { ELECTRON_RUN_AS_NODE: '1' } : {}) } });
       let output = '';
       const receive = (chunk: Buffer) => {
         output += chunk.toString();
