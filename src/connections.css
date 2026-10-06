@@ -1,0 +1,21 @@
+/* Follow the nine stages across each row, then down into the next row. */
+@media(min-width:701px){
+.node-grid{grid-template-columns:repeat(3,minmax(120px,1fr))}
+.workflow-node:nth-of-type(4){grid-area:2/3}
+.workflow-node:nth-of-type(5){grid-area:2/2}
+.workflow-node:nth-of-type(6){grid-area:2/1}
+.workflow-node:nth-of-type(7){grid-area:3/1}
+.workflow-node:nth-of-type(8){grid-area:3/2}
+.workflow-node:nth-of-type(9){grid-area:3/3}
+}
+.workflow-node:not(:nth-of-type(3n))::after{content:'';position:absolute;left:calc(100% + 5px);top:50%;width:17px;height:1px;background:#717989;pointer-events:none}
+.workflow-node:not(:nth-of-type(3n))::before{content:'';position:absolute;left:calc(100% + 18px);top:calc(50% - 3px);width:6px;height:6px;border-top:1px solid #717989;border-right:1px solid #717989;transform:rotate(45deg);pointer-events:none}
+.workflow-node:nth-of-type(4)::after,.workflow-node:nth-of-type(5)::after{left:auto;right:calc(100% + 5px)}
+.workflow-node:nth-of-type(4)::before,.workflow-node:nth-of-type(5)::before{left:auto;right:calc(100% + 18px);transform:rotate(-135deg)}
+.workflow-node:nth-of-type(3)::after,.workflow-node:nth-of-type(6)::after{content:'';position:absolute;top:calc(100% + 5px);left:50%;width:1px;height:22px;background:#717989;pointer-events:none}
+.workflow-node:nth-of-type(3)::before,.workflow-node:nth-of-type(6)::before{content:'';position:absolute;top:calc(100% + 21px);left:calc(50% - 3px);width:6px;height:6px;border-right:1px solid #717989;border-bottom:1px solid #717989;transform:rotate(45deg);pointer-events:none}
+.node-grid:has(.workflow-node.node-running) .workflow-node.node-completed::after{background:#b68fe5;animation:connection-pulse 1.7s ease-in-out infinite}
+@keyframes connection-pulse{50%{opacity:.35}}
+@media(max-width:700px){.workflow-node::before,.workflow-node::after{display:none}}
+.status-queued{color:#a6a9b8}.status-queued .status-dot,.mini-dot.queued{background:#a6a9b8}
+@media(max-width:1080px){.chat-panel{display:flex;position:fixed;right:0;top:0;bottom:0;width:min(338px,calc(100vw - 60px));max-width:calc(100vw - 60px);z-index:8;box-shadow:-16px 0 45px #0009}}
